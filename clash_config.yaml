@@ -1,0 +1,88 @@
+mixed-port: 7890
+
+allow-lan: false
+tls: true
+skip-cert-verify: true
+bind-address: '*'
+
+mode: rule
+
+log-level: info
+
+ipv6: false
+
+external-controller: 127.0.0.1:9090
+
+hosts:
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
+
+  # Firebase Cloud Messaging
+#   'mtalk.google.com': 108.177.125.188
+#   # Google Dl
+#   'dl.google.com': 180.163.151.161
+#   'dl.l.google.com': 180.163.151.161
+
+
+dns:
+  enable: true
+  listen: :1053
+  enhanced-mode: redir-host
+  nameserver:
+    - '8.8.8.8'
+    - '8.8.4.4'
+#   fallback:
+#     - 'tls://1.1.1.1:853'
+#     - 'tcp://1.1.1.1:53'
+#     # - 'tcp://208.67.222.222:443'
+#     - 'tls://dns.google'
+    
+
+proxies:
+# 支持的协议及加密算法示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/wiki/configuration47.243.227.155 47.243.17.194
+
+  # http
+# - {"name":"socks5代理","type":"http","server":"####","port":1,"username":"xx","password":"123","udp":true}
+  - {"name":"socks5代理","type":"http","server":"####","port":1,"username":"xx","password":"123","udp":true}
+    # udp: true
+  # 服务器节点订阅
+proxy-providers:
+  
+
+proxy-groups:
+
+  - name: "zhizhu"
+    type: select
+    proxies:
+      - socks5代理
+
+
+
+
+# 关于 Rule Provider 请查阅：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider
+
+rule-providers:
+
+
+rules:
+    - IP-CIDR,47.106.165.20/32,DIRECT,no-resolve
+    - IP-CIDR,8.218.87.27/32,DIRECT,no-resolve    
+    - DOMAIN-KEYWORD,me.xdrig.com,DIRECT
+    - DOMAIN-KEYWORD,nasw.yuntuqx.com,DIRECT
+    - DOMAIN-KEYWORD,jf.yuntuqx.com,DIRECT
+    - DOMAIN-KEYWORD,jf2.yuntuqx.com,DIRECT
+    - DOMAIN-KEYWORD,idc.yuntuqx.com,DIRECT
+    - DOMAIN-KEYWORD,xiaobaizhuan.com,DIRECT
+    - DOMAIN-KEYWORD,api.zhizhuip.com,DIRECT
+    - DOMAIN-KEYWORD,www.baidu.com,DIRECT
+    - DOMAIN-KEYWORD,pool-eth.com,DIRECT
+    - DOMAIN-KEYWORD,stats.lineageos.org,DIRECT
+    - DOMAIN-KEYWORD,xbext.com,DIRECT
+    - DOMAIN-KEYWORD,quantil.jsdelivr.net,DIRECT
+    - DOMAIN-KEYWORD,filters.adtidy.org,DIRECT
+    - DOMAIN-KEYWORD,brave.com,DIRECT
+    - DOMAIN-KEYWORD,connect.rom.miui.com,DIRECT
+    - DOMAIN-KEYWORD,easylist.to,DIRECT
+    - DOMAIN-KEYWORD,api.adheros.cn,DIRECT
+    - MATCH,zhizhu
